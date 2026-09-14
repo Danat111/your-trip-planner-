@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import { Section } from "./ui/Section";
 import AIRecommendation from "./AIRecommendation";
 import { getConstants } from "../lib/getconstants";
-import { apiAggregator } from "../lib/api-integration/api-aggregator";
-import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 interface AIFeature {
@@ -18,75 +16,10 @@ const AIFeatureSection: React.FC = () => {
   const { t } = useTranslation();
   const { AI_FEATURES } = getConstants(t);
   const [activeFeature, setActiveFeature] = React.useState<'itinerary' | 'personalization' | 'prediction' | 'contextual'>('itinerary');
-  const [features, setFeatures] = useState<AIFeature[]>(AI_FEATURES);
-  const [loading, setLoading] = useState(false);
-
-  // Fetch real data to enhance AI features with actual examples
-  useEffect(() => {
-    const fetchAIFeatureData = async () => {
-      setLoading(true);
-      try {
-        // Get place data for recommendations
-        const placesResult = await apiAggregator.searchPlaces({
-          query: "famous landmarks Paris",
-          type: "tourist_attraction"
-        });
-        
-        // Get weather data for smart planning examples
-        const weatherResult = await apiAggregator.getWeatherForecast({
-          lat: 48.8566, // Paris latitude
-          lon: 2.3522, // Paris longitude
-          units: "metric"
-        });
-        
-        if (placesResult.success) {
-          // Update features with real data examples
-          const updatedFeatures = features.map(feature => {
-            switch (feature.id) {
-              case 'itinerary':
-                const destinations = placesResult.data?.results?.slice(0, 3).map((place: any) => place.name) || [];
-                return {
-                  ...feature,
-                  examples: destinations,
-                  description: `${feature.description} Our AI suggests attractions like ${destinations.join(', ')} based on your preferences.`
-                };
-              case 'personalization':
-                return {
-                  ...feature,
-                  description: `${feature.description} Get personalized recommendations tailored to your unique travel style.`
-                };
-              case 'prediction':
-                const weatherInfo = weatherResult.success && weatherResult.data?.list 
-                  ? weatherResult.data.list.slice(0, 2).map((item: any) => 
-                      `${item.weather[0].main} (${Math.round(item.main.temp)}°C)`
-                    ) 
-                  : [];
-                return {
-                  ...feature,
-                  examples: weatherInfo,
-                  description: `${feature.description} Plan around weather conditions like ${weatherInfo.join(' or ')}.`
-                };
-              case 'contextual':
-                return {
-                  ...feature,
-                  description: `${feature.description} Get insider tips from locals and experienced travelers.`
-                };
-              default:
-                return feature;
-            }
-          });
-          
-          setFeatures(updatedFeatures);
-        }
-      } catch (error) {
-        console.error("Error fetching AI feature data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchAIFeatureData();
-  }, []);
+  // Static feature copy — this section is decorative marketing content, not
+  // live data, so it no longer calls third-party APIs directly from the
+  // browser (that was the original prototype's security issue).
+  const features: AIFeature[] = AI_FEATURES;
 
   return (
     <Section variant="default" spacing="xl" id="ai-features"
@@ -143,11 +76,6 @@ const AIFeatureSection: React.FC = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">
                       {feature.name}
-                      {loading && (
-                        <span className="ml-2 text-xs bg-indigo-100 text-indigo-800 py-1 px-2 rounded-full animate-pulse">
-                          Loading live data...
-                        </span>
-                      )}
                     </h3>
                     <p className="text-gray-600">{feature.description}</p>
                     {feature.examples && feature.examples.length > 0 && (
