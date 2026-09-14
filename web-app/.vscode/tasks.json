@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build and Open Live Server",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "npm run build && start dist/index.html"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

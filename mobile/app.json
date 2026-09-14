@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Your Trip Planner",
+    "slug": "your-trip-planner",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#3b82f6"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourtripplanner.app"
+    },
+    "android": {
+      "package": "com.yourtripplanner.app"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

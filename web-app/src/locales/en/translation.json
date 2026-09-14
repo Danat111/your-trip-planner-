@@ -1,0 +1,144 @@
+{
+  "welcome": "Welcome",
+  "description": "Plan your trip easily!",
+  "page_title": "Your Trip Planner - A Travel Experience Like Never Before",
+
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "blog": "Blog",
+    "contact": "Contact",
+    "faq": "FAQ"
+  },
+
+  "features": {
+    "title": "Extra Features",
+    "item1": "Easy Customization",
+    "item2": "24/7 Support"
+  },
+
+  "ai": {
+    "title": "AI Features"
+  },
+
+  "ar": {
+    "title": "AR Features"
+  },
+
+  "blog": {
+    "preview": "Check out our blog"
+  },
+
+  "contact": {
+    "title": "Contact Us"
+  },
+
+  "faq": {
+    "title": "Frequently Asked Questions"
+  },
+
+  "footer": {
+    "rights": "All rights reserved © 2025"
+  },
+
+  "hero": {
+    "title": "Plan your perfect trip with AR and AI technologies",
+    "description": "Plan your trip easily!",
+    "getStarted": "Get Started",
+    "watchDemo": "Watch Demo",
+    "features": {
+      "ar": {
+        "name": "Augmented Reality",
+        "desc": "Enjoy your trip with immersive AR features."
+      },
+      "ai": {
+        "name": "Artificial Intelligence",
+        "desc": "Smart suggestions for your journey."
+      },
+      "personalized": {
+        "name": "Personalized Plans",
+        "desc": "Itineraries tailored to your preferences."
+      }
+    }
+  },
+
+  "tripPlanner": {
+    "title": "Trip Planner",
+    "subtitle": "Enter your trip details and let us handle the rest!",
+    "detailsTitle": "Trip Details",
+    "destination": "Destination",
+    "destinationPlaceholder": "Where do you want to go?",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "budget": "Budget",
+    "budgetOptions": {
+      "budget": "Budget",
+      "medium": "Medium",
+      "luxury": "Luxury"
+    },
+    "interests": "Interests",
+    "travelStyle": "Travel Style",
+    "travelStyles": {
+      "relaxed": "Relaxed",
+      "balanced": "Balanced",
+      "active": "Active"
+    },
+    "accommodation": "Accommodation Type",
+    "accommodationTypes": {
+      "hotel": "Hotel",
+      "hostel": "Hostel",
+      "apartment": "Apartment",
+      "resort": "Resort"
+    },
+    "generate": "Generate Plan",
+    "generating": "Generating your plan...",
+    "resultTitle": "Suggested Trip Plan",
+    "days": "Days",
+    "day": "Day",
+    "save": "Save",
+    "view": "View",
+    "emptyStateTitle": "Start Planning Now!",
+    "emptyStateDesc": "Enter your trip details to receive a custom, exciting itinerary.",
+    "tag1": "Smart Planning",
+    "tag2": "Amazing Destinations",
+    "tag3": "Unforgettable Adventures",
+    "fillFields": "Please fill in all required fields.",
+    "error": "An error occurred while generating the plan. Please try again later."
+  },
+
+  "interestsList": {
+    "nature": "Nature",
+    "culture": "Culture",
+    "food": "Food",
+    "adventure": "Adventure",
+    "history": "History",
+    "shopping": "Shopping",
+    "relaxation": "Relaxation",
+    "nightlife": "Nightlife"
+  },
+
+  "testimonials": {
+    "title": "What Our Users Say",
+    "subtitle": "Discover how the trip planner transformed travel experiences",
+    "items": [
+      {
+        "quote": "This app completely changed how I plan my trips. Absolutely amazing!",
+        "name": "Sarah Johnson",
+        "title": "Travel Blogger"
+      },
+      {
+        "quote": "I loved how easy it was to use. The AR features are incredible!",
+        "name": "Ahmed Ali",
+        "title": "Adventure Lover"
+      },
+      {
+        "quote": "Made planning fun and interactive. Highly recommended!",
+        "name": "Emily Smith",
+        "title": "Photographer"
+      }
+    ],
+    "ctaTitle": "Ready for a next-level travel experience?",
+    "ctaDescription": "Join thousands of travelers who have discovered the power of AI and AR in trip planning.",
+    "ctaButton": "Get Started"
+  }
+}

@@ -1,0 +1,44 @@
+// Your Trip Planner - Database Schema
+// Dev default: SQLite (zero setup). Switch provider to "postgresql" for production
+// and set DATABASE_URL to a real Postgres connection string.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  trips        Trip[]
+}
+
+model Trip {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  destination   String
+  startDate     DateTime
+  endDate       DateTime
+  budget        String
+  travelStyle   String
+  interests     String   // JSON-encoded string array (SQLite has no native array type)
+  accommodation String
+
+  // Full generated plan (weather snapshot, attractions, daily itinerary, AI narrative)
+  planJson      String
+
+  status        String   @default("draft") // draft | confirmed | completed
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
