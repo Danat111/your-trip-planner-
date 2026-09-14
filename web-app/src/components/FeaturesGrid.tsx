@@ -2,8 +2,6 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { Section } from "./ui/Section";
 import { getConstants } from "../lib/getconstants";
-import { apiAggregator } from "../lib/api-integration/api-aggregator";
-import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 interface Feature {
@@ -26,50 +24,11 @@ const FeaturesGrid: React.FC<FeaturesGridProps> = ({
 }) => {
   const { t } = useTranslation();
   const { FEATURES } = getConstants(t);
-  const features = featuresProp ?? FEATURES;
-  const [enhancedFeatures, setEnhancedFeatures] = useState<Feature[]>(features);
-  const [loading, setLoading] = useState(false);
-
-  // Fetch real data to enhance features with actual examples
-  useEffect(() => {
-    const fetchFeatureData = async () => {
-      setLoading(true);
-      try {
-        // Get place data for feature descriptions
-        const placesResult = await apiAggregator.searchPlaces({
-          query: "famous landmarks",
-          type: "tourist_attraction"
-        });
-        
-        if (placesResult.success && placesResult.data?.results) {
-          // Get top destinations to use in feature descriptions
-          const topDestinations = placesResult.data.results.slice(0, 5);
-          
-          // Update features with real data examples
-          const updatedFeatures = features.map(feature => {
-            // Randomly select a destination to mention in the feature
-            const randomIndex = Math.floor(Math.random() * topDestinations.length);
-            const randomDestination = topDestinations[randomIndex];
-            
-            return {
-              ...feature,
-              description: feature.description.includes("{{example}}") 
-                ? feature.description.replace("{{example}}", randomDestination.name)
-                : feature.description
-            };
-          });
-          
-          setEnhancedFeatures(updatedFeatures);
-        }
-      } catch (error) {
-        console.error("Error fetching feature data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchFeatureData();
-  }, [features]);
+  // Static feature copy — decorative marketing content, not live data.
+  // (The previous version called a third-party API directly from the
+  // browser on every render due to an unstable effect dependency, which
+  // caused an infinite request loop as well as a security issue.)
+  const enhancedFeatures = featuresProp ?? FEATURES;
 
   return (
     <Section variant="default" spacing="xl" id="features-grid"
@@ -98,11 +57,6 @@ const FeaturesGrid: React.FC<FeaturesGridProps> = ({
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           {description}
-          {loading && (
-            <span className="ml-2 text-xs bg-blue-100 text-blue-800 py-1 px-2 rounded-full animate-pulse inline-block">
-              Enhancing with live data...
-            </span>
-          )}
         </motion.p>
       </div>
       
