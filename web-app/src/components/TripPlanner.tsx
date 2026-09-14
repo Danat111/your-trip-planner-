@@ -239,20 +239,26 @@ const TripPlanner: React.FC = () => {
               <h3 className="text-2xl font-semibold mb-4">{t("tripPlanner.resultTitle")}</h3>
               <div className="mb-4">
                 <h4 className="text-lg font-medium text-blue-700">
-                  {tripPlan.destination} • {tripPlan.duration} {t("tripPlanner.days")}
+                  {tripPlan.destination?.name}
                 </h4>
                 <p className="text-gray-600">
-                  {new Date(tripPlan.startDate).toLocaleDateString()} - {new Date(tripPlan.endDate).toLocaleDateString()}
+                  {new Date(tripPlan.dates?.start).toLocaleDateString()} - {new Date(tripPlan.dates?.end).toLocaleDateString()}
                 </p>
+                {tripPlan.aiPlan?.summary && (
+                  <p className="text-gray-700 mt-2">{tripPlan.aiPlan.summary}</p>
+                )}
               </div>
               <div className="space-y-4 mb-6">
-                {tripPlan.days?.map((day: any, index: number) => (
-                  <div key={index} className="border-l-4 border-blue-500 pl-4">
-                    <h5 className="font-medium">{t("tripPlanner.day")} {index + 1}</h5>
+                {tripPlan.aiPlan?.days?.map((day: any) => (
+                  <div key={day.day} className="border-l-4 border-blue-500 pl-4">
+                    <h5 className="font-medium">
+                      {t("tripPlanner.day")} {day.day} — {day.title}
+                    </h5>
                     <ul className="text-sm text-gray-600 space-y-1">
-                      {day.activities?.map((activity: any, actIndex: number) => (
-                        <li key={actIndex}>• {activity.time}: {activity.description}</li>
-                      ))}
+                      <li>🌅 {day.morning}</li>
+                      <li>☀️ {day.afternoon}</li>
+                      <li>🌙 {day.evening}</li>
+                      {day.estimatedCost && <li className="text-gray-500">💰 {day.estimatedCost}</li>}
                     </ul>
                   </div>
                 ))}
